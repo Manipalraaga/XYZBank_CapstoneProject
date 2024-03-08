@@ -1,15 +1,16 @@
 package com.crm.qa.testcases;
 
+
+
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeMethod;
 import org.testng.AssertJUnit;
 import java.io.IOException;
 import com.crm.qa.TestBase.TestBase;
-import com.crm.qa.pages.WithdrawalPage;
 import com.crm.qa.pages.AddCustomerPage;
 import com.crm.qa.pages.CustomerLoginPage;
-
+import com.crm.qa.pages.WithdrawalPage;
 
 
 public class AddCustomerPageTest extends TestBase{
@@ -24,31 +25,33 @@ public class AddCustomerPageTest extends TestBase{
 	String message_AddCustomer_Exist = prop.getProperty("message_AddCustomer_Exist") ;
 	
 	
-	
+	// Constructor for AddCustomerPageTest class
 	public AddCustomerPageTest()
 	{
 		super();
 	}
 	
 	
-	
+	// Method to set up test environment before each test case
 	@BeforeMethod
 	public void setUp() {
+		
+		// Initialize the test environment
 		initialization();
 		
+		// Initialize loginPage object
 		try {
 			loginPage = new CustomerLoginPage();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		addCustomerPage = loginPage.ManagerLogin();
 		
-		
-		
+		// Log in as a manager and navigate to add customer page
+		addCustomerPage = loginPage.ManagerLogin();	
 	}
 
-	
+	// Test case to add a customer who does not exist
 	@Test(priority=1)
 	public void AddCustomerNotExist() throws InterruptedException
 	{
@@ -63,6 +66,7 @@ public class AddCustomerPageTest extends TestBase{
 		
 	}
 	
+	// Test case to add a customer who already exists
 	@Test(priority=2, dependsOnMethods = "AddCustomerNotExist")
 	public void AddCustomerExist() throws InterruptedException
 	{
@@ -71,20 +75,13 @@ public class AddCustomerPageTest extends TestBase{
         Thread.sleep(1000);
 		addCustomerPage.AddCustomer(fname,lname,postcode);
 		String result2 = addCustomerPage.getAlertMessageText();
-        AssertJUnit.assertEquals(result2, message_AddCustomer_Exist);
-		
-		
+        AssertJUnit.assertEquals(result2, message_AddCustomer_Exist);	
 	}
 	
 	
-	
+	// Method to tear down the test environment after each test case
 	@AfterMethod
 	public void tearDown(){
 		driver.quit();
 	}
-	
-	
-	
-	
-
 }

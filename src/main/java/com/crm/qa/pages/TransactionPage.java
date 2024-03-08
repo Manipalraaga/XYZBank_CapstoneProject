@@ -62,21 +62,6 @@ public class TransactionPage extends TestBase{
 	
 	
 	
-//	public void InValidWithdraw(int Amount) throws InterruptedException
-//	{
-//		int count = acno();
-//		for(int i=0;i<count;i++)
-//		{
-//			 SelectAccount(i);
-//			 int oldBal= Integer.valueOf(GetBalance());
-//			 Withdraw(Amount);
-//			 driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-//			 int newBal = Integer.valueOf(GetBalance());
-//			 int currentBal = Withdraw_CurrentBalance(Amount,oldBal) ;
-//			 Assert.assertEquals(newBal,currentBal);
-//			 
-//			 
-//		}
-//	}
+
 	
 }
